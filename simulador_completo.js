@@ -20,7 +20,7 @@ function ocultarSecciones(){
 }
 
 
-function mostrarSeccion(id){
+function mostrarSeccion(id){ // funcion q activa parte visual
   ocultarSecciones();
 
   let componente= document.getElementById(id);
@@ -34,10 +34,11 @@ function guardarTasa(){
   if(tasa>=10 && tasa<=20){
     mostrarTexto("mensajeTasa","Tasa configurada correctamente: "+tasa+" %"); //mostrar texto: util.
   }else{
-    mostrarTexto("mensajeTasa","La tasa debe estar entre 10 y 20");
+    mostrarTexto("mensajeTasa","La tasa debe estar entre 10 y 20");  //funcion utilitarios
   }
-
 }
 
-//Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
 
+function guardarCliente(){
+  
+}

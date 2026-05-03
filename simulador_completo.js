@@ -69,6 +69,7 @@ function guardarCliente(){
   cliente.egresos = valorEgresos;
 
   clientesArreglo.push(cliente);    // guarda el cliente dentro de clientesArreglo[]
+  limpiar();
   pintarClientes();                 //llama a la funcion pintar para mostrar datos en la tabla
   
 }
@@ -114,5 +115,58 @@ function guardarCliente(){
                       "<td><button>"+ 'Actualizar'+"</button> <button>"+'Eliminar'+"</button></td>"+      
                   "</tr>";      
     }
-     tabla.innerHTML = filaTabla;   
+    tabla.innerHTML = filaTabla;   
   }
+
+
+
+  //----- BUSCAR Y ACTUALIZAR --------
+
+/*   Función buscarCliente(cedula)
+● Retorna:
+  ○ Cliente si existe
+  ○ null si no        */
+function buscarCliente(cedula){
+  let elementoTabla;
+  let clienteEncontrado = null;
+
+  for(let i=0; i<clientesArreglo.length; i++){
+    elementoTabla = clientesArreglo[i];
+      if(elementoTabla.cedula == cedula){
+        clienteEncontrado = elementoTabla;
+        break;                    //encuentra el valor y suspende la ejecucion del for
+      }
+  }
+
+  return clienteEncontrado;
+}
+
+
+/*Función seleccionarCliente(cedula)
+  Debe:
+      1. Buscar el cliente
+      2. Guardarlo en clienteSeleccionado
+      3. Mostrar datos en inputs              */
+
+function seleccionarCliente(cedula){     // falta entender esta parte
+  let resultado = buscarCliente(cliente.cedula);
+
+  if(resultado == null){ 
+      clientesArreglo.push() 
+
+  }
+
+}
+
+
+
+// Función limpiar()
+//   Debe vaciar todos los inputs.
+function limpiar(){
+  document.getElementById("idCedula").value = "";
+  document.getElementById("idNombre").value = "";
+  document.getElementById("idApellido").value = "";
+  document.getElementById("idIngresos").value = "";
+  document.getElementById("idEgresos").value = "";
+}
+

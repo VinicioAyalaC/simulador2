@@ -1,5 +1,5 @@
 
-  let clientes = [];
+  let clientesArreglo = [];
   let creditos = [];
 
   let tasaInteres = 15;
@@ -28,7 +28,9 @@ function mostrarSeccion(id){ // funcion q activa parte visual
   listaClass.add("activa");  //activa
 }
 
-
+// funcion guradar tasa
+// Conectar el botón Guardar tasa con la función
+// 
 function guardarTasa(){
   let tasa = recuperarFloat("tasaInteres");
   if(tasa>=10 && tasa<=20){
@@ -38,7 +40,79 @@ function guardarTasa(){
   }
 }
 
+//----- ADMINISTRACION DE CLIENTES --------
+
+// AGREGAR ID Y PLACEHOLDER A LOS INPUTS
+//CREAR ARREGLO     let clientes=[]
+
+// FUNCION GUARDAR CLIENTES
+/*
+  1. Obtener datos del formulario
+  2. Convertir valores numéricos
+  3. Crear objeto cliente
+  4. Agregarlo al arreglo   */
 
 function guardarCliente(){
+
+  let valorCedula =   recuperaraTexto("idCedula");
+  let valorNombre =   recuperaraTexto("idNombre");
+  let valorApellido = recuperaraTexto("idApellido");
+  let valorIngresos = recuperarFloat("idIngresos");
+  let valorEgresos =  recuperarFloat("idEgresos");
+
+  let cliente ={};
+
+  cliente.cedula = valorCedula;
+  cliente.nombre = valorNombre;
+  cliente.apellido = valorApellido;
+  cliente.ingresos = valorIngresos;
+  cliente.egresos = valorEgresos;
+
+  clientesArreglo.push(cliente);    // guarda el cliente dentro de clientesArreglo[]
+  pintarClientes();                 //llama a la funcion pintar para mostrar datos en la tabla
   
 }
+
+
+// FUNCION PINTAR CLIENTES
+/*
+  1. Recorrer el arreglo
+  2. Generar filas <tr> dinámicamente
+  3. Insertarlas en: <tbody id="tablaClientes">
+  4. Cada fila debe tener: Datos del cliente Y  Botón Actualizar  */
+
+  /* Estructura de una tabla:
+
+<table>
+    <tr>
+        <th>cabecera1</th>
+        <th>cabecera2</th>
+    </tr>
+
+    <tr>
+        <td>fila1</td>
+        <td>fila2</td> 
+    </tr>
+</table>   */
+
+  function pintarClientes(){
+    let tabla = document.getElementById("tablaClientes");
+    tabla.innerHTML = "";
+
+    let elementosTabla;
+    let filaTabla = "";
+
+    for(let i=0;  i<clientesArreglo.length; i++){
+      elementosTabla = clientesArreglo[i];
+
+      filaTabla += "<tr>"+ 
+                      "<td>"+ elementosTabla.cedula     +"</td>"+
+                      "<td>"+ elementosTabla.nombre     +"</td>"+
+                      "<td>"+ elementosTabla.apellido   +"</td>"+
+                      "<td>"+ elementosTabla.ingresos   +"</td>"+
+                      "<td>"+ elementosTabla.egresos    +"</td>"+
+                      "<td><button>"+ 'Actualizar'+"</button> <button>"+'Eliminar'+"</button></td>"+      
+                  "</tr>";      
+    }
+     tabla.innerHTML = filaTabla;   
+  }

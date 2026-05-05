@@ -68,10 +68,22 @@ function guardarCliente(){
   cliente.ingresos = valorIngresos;
   cliente.egresos = valorEgresos;
 
-  clientesArreglo.push(cliente);    // guarda el cliente dentro de clientesArreglo[]
+  let busqueda = buscarCliente(valorCedula);
+
+  if(busqueda == null){
+    clientesArreglo.push(cliente);    // guarda el cliente dentro de clientesArreglo[]
+    pintarClientes();                 //llama a la funcion pintar para mostrar datos en la tabla  
+  } else{
+    busqueda.nombre = valorNombre;
+    busqueda.apellido = valorApellido;
+    busqueda.ingresos = valorIngresos;
+    busqueda.egresos = valorEgresos;
+    //clientesArreglo.push(busqueda);
+    pintarClientes();    
+  }
+
   limpiar();
-  pintarClientes();                 //llama a la funcion pintar para mostrar datos en la tabla
-  
+    
 }
 
 
@@ -112,7 +124,7 @@ function guardarCliente(){
                       "<td>"+ elementosTabla.apellido   +"</td>"+
                       "<td>"+ elementosTabla.ingresos   +"</td>"+
                       "<td>"+ elementosTabla.egresos    +"</td>"+
-                      "<td><button>"+ 'Actualizar'+"</button> <button>"+'Eliminar'+"</button></td>"+      
+                      "<td><button onclick='seleccionarCliente("+ elementosTabla.cedula +")'>Actualizar</button>"+"<button>"+'Eliminar'+"</button></td>"+      
                   "</tr>";      
     }
     tabla.innerHTML = filaTabla;   
@@ -141,7 +153,6 @@ function buscarCliente(cedula){
   return clienteEncontrado;
 }
 
-
 /*Función seleccionarCliente(cedula)
   Debe:
       1. Buscar el cliente
@@ -149,11 +160,15 @@ function buscarCliente(cedula){
       3. Mostrar datos en inputs              */
 
 function seleccionarCliente(cedula){     // falta entender esta parte
-  let resultado = buscarCliente(cliente.cedula);
+  let resultado = buscarCliente(cedula);
 
-  if(resultado == null){ 
-      clientesArreglo.push() 
-
+  if(resultado != null){ 
+      clienteSeleccionado = resultado;
+      mostrarTextoEnCaja("idCedula",clienteSeleccionado.cedula);
+      mostrarTextoEnCaja("idNombre",clienteSeleccionado.nombre);
+      mostrarTextoEnCaja("idApellido",clienteSeleccionado.apellido);
+      mostrarTextoEnCaja("idIngresos",clienteSeleccionado.ingresos);
+      mostrarTextoEnCaja("idEgresos",clienteSeleccionado.egresos);
   }
 
 }

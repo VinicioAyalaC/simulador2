@@ -128,7 +128,10 @@ function guardarCliente(){
                       "<td>"+ elementosTabla.apellido   +"</td>"+
                       "<td>"+ elementosTabla.ingresos   +"</td>"+
                       "<td>"+ elementosTabla.egresos    +"</td>"+
-                      "<td><button onclick='seleccionarCliente("+ elementosTabla.cedula +")'>Actualizar</button>"+"<button>"+'Eliminar'+"</button></td>"+      
+                      "<td>"+ 
+                            "<button onclick='seleccionarCliente("+ elementosTabla.cedula +")'>Actualizar</button>" + 
+                            "<button onclick='eliminarCliente("+ elementosTabla.cedula +")'>Eliminar</button>" +                      
+                      "</td>"+      
                   "</tr>";      
     }
     tabla.innerHTML = filaTabla;   
@@ -176,6 +179,15 @@ function seleccionarCliente(cedula){     // falta entender esta parte
   }
 
 }
+
+
+function eliminarCliente(cedula){
+  clientesArreglo = clientesArreglo.filter( function(c){ return c.cedula != cedula; }); // nuevo arreglo sin el cliente a eliminar
+  pintarClientes();
+}
+
+
+
 
 
 
@@ -354,13 +366,18 @@ function pintarCreditos(arregloCreditos) {   //recibe un arreglo de creditos
                         "<td>"+creditoActual.monto      +"</td>"+
                         "<td>"+creditoActual.tasa       +"</td>"+
                         "<td>"+creditoActual.plazo      +"</td>"+
-                        "<td>"+creditoActual.cuota      +"</td>"+ 
+                        "<td>"+creditoActual.cuota.toFixed(2)  +"</td>"+ 
                      "</tr>"
       }
-      tablaCreditos = filaTabla;
+      tablaCreditos.innerHTML = filaTabla;
 } // fin de funcion
 
 
+// PARTE 3: PASO 6  
 
+function buscarCreditosCliente(){
+  let cedula = recuperaraTexto("buscarCedulaHistorial");  // lee la cedula de la caja en html
+  let resultado = buscarCreditos(cedula);       // llama al paso 4
 
-
+  pintarCreditos(resultado);    //llama al paso 5
+}

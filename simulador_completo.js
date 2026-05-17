@@ -303,10 +303,64 @@ function solicitarCredito(){
   montoCalculado = 0;
   plazoCalculado = 0;
 
-
-
-
 }//fin de funcion
 
 
 // hola dev
+
+// PARTE 3:  PASO 4
+
+function buscarCreditos(cedula){
+
+  let creditosEncontrados = [];   //arreglo de creditos creditos encontrados
+
+  for(let i=0; i<creditos.length; i++ ){
+    let creditoActual = creditos[i];
+
+        if(creditoActual.cedula == cedula){
+          creditosEncontrados.push(creditoActual);  // guarda en el arreglo el credito encontrado            
+        }
+  }
+
+  return creditosEncontrados;     //retorna el credito encontrado
+} // fin de funcion
+
+
+
+
+// PARTE 3: PASO 5
+function pintarCreditos(arregloCreditos) {   //recibe un arreglo de creditos
+
+  let tablaCreditos = document.getElementById("tablaHistorial");  // variable para mostrar la tabla
+  tablaCreditos.innerHTML = "";
+
+  let mensajeDiv = document.getElementById("mensajeHistorial");  // cambiar el mensaje informativo
+  mensajeDiv.innerHTML = "";
+
+      if(arregloCreditos.length == 0){
+        mensajeDiv.innerHTML = "<p>Sin creditos registrados</p>";
+        return;         // de no existir informacion, sale de la funcion
+      }
+
+      let filaTabla = "";
+
+      for(let i=0;  i< arregloCreditos.length; i++){
+        let creditoActual = arregloCreditos[i];
+
+        filaTabla += "<tr>"+
+                        "<td>"+creditoActual.cedula     +"</td>"+
+                        "<td>"+creditoActual.nombre     +"</td>"+
+                        "<td>"+creditoActual.apellido   +"</td>"+
+                        "<td>"+creditoActual.monto      +"</td>"+
+                        "<td>"+creditoActual.tasa       +"</td>"+
+                        "<td>"+creditoActual.plazo      +"</td>"+
+                        "<td>"+creditoActual.cuota      +"</td>"+ 
+                     "</tr>"
+      }
+      tablaCreditos = filaTabla;
+} // fin de funcion
+
+
+
+
+

@@ -90,6 +90,43 @@
   </button>
 </section>
 
+<!--PARTE 3-->
+
+<section id="historial" >
+  <h2>**CREDITOS REGISTRADOS**</h2>
+
+  <input type="text" id="buscarCedulaHistorial" placeholder="Cedula">
+  <button onclick="buscarCreditosCliente()">Buscar Creditos</button>  <!--filtar cedula-->
+
+  <button onclick="pintarCreditos(creditos)">Ver todos los creditos</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cedula: </th>
+        <th>Nombre: </th>
+        <th>Apellido: </th>
+        <th>Monto: </th>
+        <th>Tasa: </th>
+        <th>Plazo: </th>
+        <th>Cueota: </th>
+      </tr>
+    </thead>
+    
+        <tbody  id="tablaHistorial">
+
+        </tbody>
+
+  </table> 
+
+        <div id="mensajeHistorial" ></div>
+
+</section>
+
+<!--FIN PARTE 3-->
+
+
+
 <script src="simulador_completo.js"></script>
 <script src="utilitarios.js"></script>
 </body>

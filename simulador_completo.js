@@ -307,3 +307,6 @@ function solicitarCredito(){
 
 
 }//fin de funcion
+
+
+// hola dev
